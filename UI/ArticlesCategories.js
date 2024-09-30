@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, Image, FlatList, ScrollView } from 'react-native';
-import styles from '../styles/globalStyles.js';
+import { View, Text, Image, FlatList, ScrollView,StyleSheet } from 'react-native';
 
 const articles = [
     {
@@ -61,33 +60,48 @@ const articles = [
     },
 ];
 
-const Item = ({ article, navigation }) => (
-    <View>
-        <ScrollView
-            horizontal={true}
-        >
-            <View style={styles.containerImage}>
-                <Image source={{ uri: article.articlePicture }} style={styles.picture} /></View>
-            <View style={styles.row}>
-                <Text style={styles.title1}>{article.articleName}</Text>
-            </View>
-        </ScrollView>
+const Item = ({ article }) => (
+    <View style={styles.itemContainer}>
+        <Image source={{ uri: article.articlePicture }} style={styles.picture} />
+        <Text style={styles.title1}>{article.articleName}</Text>
     </View>
 );
 
-
 const ArticlesCategory = ({ navigation }) => {
     return (
-        <View>
-            <Text> App Meli</Text>
+        <View style={styles.container}>
             <FlatList
                 data={articles}
-                renderItem={({ item }) => <Item article={item} navigation={navigation} />}
+                renderItem={({ item }) => <Item article={item} />}
                 keyExtractor={(article) => article.id.toString()}
+                horizontal 
+                showsHorizontalScrollIndicator={false}
             />
         </View>
     )
 }
 
+const styles = StyleSheet.create({
+    container: {
+        height: 130,
+        marginTop: 20,
+    },
+    itemContainer: {
+        width: 100, // Ancho del item
+        marginRight: 10, // Espaciado entre items
+        alignItems: 'center', // Centrar elementos dentro del item
+    },
+    picture: {
+        width: 80,
+        height: 80,
+        borderRadius: 10,
+        // Ajusta otros estilos según sea necesario
+    },
+    title1: {
+        marginTop: 5,
+        textAlign: 'center',
+        // Ajusta otros estilos según sea necesario
+    },
+});
 
 export default ArticlesCategory;

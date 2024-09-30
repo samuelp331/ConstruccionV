@@ -37,6 +37,14 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginRight: 10
   },
+  pictureCategories: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: null,
+    height: null,
+    borderRadius: 50,
+    marginRight: 10
+  },
   logo: {
     width: 150,
     height: 150,

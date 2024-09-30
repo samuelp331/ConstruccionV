@@ -61,7 +61,7 @@ const Login = ({ navigation }) => {
         {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
         <TouchableOpacity style={styles.button}
           activeOpacity={0.7}
-          onPress={() => navigation.navigate('ScreenList')} >
+          onPress={() => navigation.navigate('Home')} >
           <Text style={styles.buttonText}>Iniciar sesion</Text>
         </TouchableOpacity>
 

@@ -16,6 +16,7 @@ import Offers from './UI/Offers.js';
 import Profile from './UI/Profile.js';
 import Support from './UI/Support.js';
 import ScreenList from "./UI/ScreenList";
+import Home from "./UI/Home.js";
 
 
 const Menu = createDrawerNavigator();
@@ -27,7 +28,7 @@ const App = () => {
 
     <NavigationContainer>
       <Menu.Navigator>
-        <Menu.Screen name="ScreenList" component={ScreenList} />
+        <Menu.Screen name="Home" component={Home} />
         <Menu.Screen name="Login" component={Login} />
         <Menu.Screen name="Register" component={Register} />
         <Menu.Screen name="Payment" component={Payment} />
