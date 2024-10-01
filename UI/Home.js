@@ -3,6 +3,7 @@ import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-nativ
 import Icon from 'react-native-vector-icons/Ionicons'; // Importa el ícono que necesites
 import styles from '../styles/globalStyles.js';
 import ArticlesCategory from './ArticlesCategories.js';
+import ArticlesCard from './ArticlesCard.js';
 
 const Home = ({ navigation }) => {
     const handleNavigateToOffers = () => {
@@ -24,7 +25,15 @@ const Home = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
 
-            <ArticlesCategory />
+            <View style={styles.card}>
+                <Text style={styles.title}>Categorias</Text>
+                <ArticlesCategory />
+            </View>
+            <View style={styles.card}>
+                <ArticlesCard />
+            </View>
+
+            
         </View>
     );
 };
@@ -33,11 +42,13 @@ const Homestyles = StyleSheet.create({
     container: {
         flex: 1, // Permitir que el contenedor ocupe todo el espacio disponible
         padding: 10, // Añadir un poco de padding
+        
     },
     searchContainer: {
-        flexDirection: 'row', // Mantener la fila solo para el buscador y el botón
+        flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10, // Espacio entre el buscador y las categorías
+        marginBottom: 10,
+        backgroundColor: "#fff"
     },
     input: {
         flex: 0.75, // Ocupa el 75% del espacio

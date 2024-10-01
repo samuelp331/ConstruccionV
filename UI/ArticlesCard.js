@@ -62,38 +62,37 @@ const articles = [
 ];
 
 const Item = ({ article, navigation }) => (
-  <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ArticlesDetails', { article: article[1] })}>
+  <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ArticlesDetails', { article: article })}>
     <View >
       <View style={styles.containerImage}>
-        <Image source={{ uri: article.articlePicture }} style={styles.picture} /></View>
+        <Image source={{ uri: article.articlePicture }} style={styles.picture} />
+      </View>
       <View style={styles.row}>
         <Text style={styles.title1}>{article.articleName}</Text>
       </View>
       <View style={styles.row}>
-        <Text style={styles.subtitle}> Descripción: </Text>
-        <Text style={styles.text2}>{article.articleDescription}</Text>
+        <Text style={styles.contextDetail}>{article.articleDescription}</Text>
       </View>
-      <View style={styles.row}>
-        <Text style={styles.subtitle}> Valor: </Text>
-        <Text style={styles.text2}>{article.articleValue}</Text>
+      <View style={styles.element}>
+        <Text $style={styles.text}> ${article.articleValue} </Text>
       </View>
       <TouchableOpacity style={styles.button}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate('ShoppingCar')} >
-        <Text style={styles.buttonText}>Agregar carrito</Text>
+        onPress={() => navigation.navigate('ShoppingCar')}>
+        <Text style={styles.buttonText}>Agregar</Text>
       </TouchableOpacity>
     </View>
-  </TouchableOpacity >
+  </TouchableOpacity>
 );
 
 const ArticlesCard = ({ navigation }) => {
   return (
-    <View>
-      <Text> App Meli</Text>
+    <View style={styles.Detailcontainer}>
       <FlatList
         data={articles}
         renderItem={({ item }) => <Item article={item} navigation={navigation} />}
         keyExtractor={(article) => article.id.toString()}
+        numColumns={2} // Mostrar 2 columnas
       />
     </View>
   )

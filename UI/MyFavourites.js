@@ -72,12 +72,11 @@ const Item = ({ article, navigation }) => (
             <View style={styles.row}>
                 <Text style={styles.title1}>{article.articleName}</Text>
             </View>
+
             <View style={styles.row}>
-                <Text style={styles.subtitle}> Descripción: </Text>
-                <Text style={styles.text2}>{article.articleDescription}</Text>
+                <Text style={styles.contextDetail}>{article.articleDescription}</Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.subtitle}> Valor: </Text>
                 <Text style={styles.text2}>{article.articleValue}</Text>
             </View>
             <TouchableOpacity style={styles.button}
@@ -92,7 +91,6 @@ const Item = ({ article, navigation }) => (
 const MyFavourites = ({ navigation }) => {
     return (
         <View>
-            <Text> App Meli</Text>
             <FlatList
                 data={articles}
                 renderItem={({ item }) => <Item article={item} navigation={navigation} />}

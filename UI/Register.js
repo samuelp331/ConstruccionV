@@ -1,9 +1,9 @@
-import { React, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import { React, useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import styles from '../styles/globalStyles.js';
 // import ModalSelector from '@react-native-modal-selector';
 
-const Register = ({navigation}) => {
+const Register = ({ navigation }) => {
 
   const [user, setUser] = useState('');
   const [errorUser, setErrorUser] = useState('');
@@ -21,7 +21,7 @@ const Register = ({navigation}) => {
 
   const validateUser = (text) => {
     setUser(text);
-    if (text.length>10) {
+    if (text.length > 10) {
       setErrorUser('El User no es válido');
     } else {
       setErrorUser('');
@@ -30,7 +30,7 @@ const Register = ({navigation}) => {
 
   const validateEmail = (text) => {
     setEmail(text);
-    if (!text.includes('@')||!text.includes('.')) {
+    if (!text.includes('@') || !text.includes('.')) {
       setErrorEmail('El Email no es válido');
     } else {
       setErrorEmail('');
@@ -45,26 +45,26 @@ const Register = ({navigation}) => {
     if (age >= 18 && age <= 50) {
       setErrorBirthdate('Error', 'No está en el rango de edad para crear la cuenta.');
     } else {
-        setErrorAddress('');
+      setErrorAddress('');
     }
   };
 
   const validateAddress = (text) => {
     setAddress(text);
-    if (text.length>3) {
-        setErrorAddress('La direccion supera los 30 caracteres');
+    if (text.length > 3) {
+      setErrorAddress('La direccion supera los 30 caracteres');
     } else {
-        setErrorAddress('');
+      setErrorAddress('');
     }
   };
 
   const validatePassword = (text) => {
     const validatorRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/g;
     setPassword(text);
-    if (text.length>8 || !text.match(validatorRegex) || !text.match(/[0-9]|[A-Z]/g) ) {
+    if (text.length > 8 || !text.match(validatorRegex) || !text.match(/[0-9]|[A-Z]/g)) {
       setErrorPassword('La contraseña no es valida');
     } else {
-      setErrorPassword  ('');
+      setErrorPassword('');
     }
   };
 
@@ -119,96 +119,98 @@ const Register = ({navigation}) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View>
-        <Text style={styles.title1}>Registrar usuario</Text>
-      </View>
-      <View>
-        <TextInput style={styles.input}
-          placeholder="Usuario"
-          value={user}
-          maxLength={10}
-          onChangeText={validateUser}
-        />
-        <Text style={styles.validationText}>Max. 10 Caracteres </Text>
-        {errorUser ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
+    <View style={styles.container}>
+      <ScrollView >
+        <View>
+          <Text style={styles.title1}>Registrar usuario</Text>
+        </View>
+        <View>
+          <TextInput style={styles.input}
+            placeholder="Usuario"
+            value={user}
+            maxLength={10}
+            onChangeText={validateUser}
+          />
+          <Text style={styles.validationText}>Max. 10 Caracteres </Text>
+          {errorUser ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
 
-        <TextInput style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={validateEmail}
-        />
-        <Text style={styles.validationText}>Max. 10 Caracteres </Text>
-        {errorEmail ? <Text style={{ color: 'red' }}>{errorEmail}</Text> : null}
+          <TextInput style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={validateEmail}
+          />
+          <Text style={styles.validationText}>Max. 10 Caracteres </Text>
+          {errorEmail ? <Text style={{ color: 'red' }}>{errorEmail}</Text> : null}
 
-        <TextInput
+          <TextInput
             placeholder="YYYY-MM-DD"
             value={birthDate}
             onChangeText={validateBirthday}
-      />
-      {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
+          />
+          {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
 
-        <TextInput
+          <TextInput
             placeholder="Dirección"
             maxLength={30}
             value={address}
             onChangeText={validateAddress}
-      />
-      {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
+          />
+          {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
 
-        <TextInput
+          <TextInput
             placeholder="YYYY-MM-DD"
             value={birthDate}
             onChangeText={validateBirthday}
-      />
-      {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
+          />
+          {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
 
-        <TextInput
+          <TextInput
             placeholder="Dirección"
             maxLength={30}
             value={address}
             onChangeText={validateAddress}
-      />
-      {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
+          />
+          {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
 
-        <TextInput style={styles.input}
-          placeholder="Contraseña"
-          value={password}
-          maxLength={8}
-          secureTextEntry={true}
-          onChangeText={validatePassword}
-        />
-        <Text style={styles.validationText}>Max. 8 Caracteres </Text>
-        <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
-        <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
-        <Text style={styles.validationText}>letras y números </Text>
-        
-        {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
+          <TextInput style={styles.input}
+            placeholder="Contraseña"
+            value={password}
+            maxLength={8}
+            secureTextEntry={true}
+            onChangeText={validatePassword}
+          />
+          <Text style={styles.validationText}>Max. 8 Caracteres </Text>
+          <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
+          <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
+          <Text style={styles.validationText}>letras y números </Text>
 
-        <TextInput style={styles.input}
-          placeholder="Confirmar contraseña"
-          value={password}
-          maxLength={8}
-          secureTextEntry={true}
-          onChangeText={validatePassword}
-        />
-        <Text style={styles.validationText}>Max. 8 Caracteres </Text>
-        <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
-        <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
-        <Text style={styles.validationText}>letras y números </Text>
-        
-        {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
+          {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
+
+          <TextInput style={styles.input}
+            placeholder="Confirmar contraseña"
+            value={password}
+            maxLength={8}
+            secureTextEntry={true}
+            onChangeText={validatePassword}
+          />
+          <Text style={styles.validationText}>Max. 8 Caracteres </Text>
+          <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
+          <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
+          <Text style={styles.validationText}>letras y números </Text>
+
+          {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
 
 
 
-        <TouchableOpacity style={styles.button}
-          activeOpacity={0.7}
-          onPress={() => navigation.navigate('Login')} >
-          <Text style={styles.buttonText}>Registrar Usuario</Text>
-        </TouchableOpacity>
-      </View>
-      
-    </ScrollView>
+          <TouchableOpacity style={styles.button}
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('Login')} >
+            <Text style={styles.buttonText}>Registrar Usuario</Text>
+          </TouchableOpacity>
+        </View>
+
+      </ScrollView>
+    </View>
   );
 };
 export default Register;

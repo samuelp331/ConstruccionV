@@ -30,48 +30,48 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-        <View style={styles.containerImage}>
-        <Image source={logo} style={styles.logo}/>
+    <View>
+        <Image source={logo} style={styles.pictureDetaile} />
 
+      <View style={styles.Detailcontainer}>
+        <View style={{ paddingBottom: -15 }} >
+          <Text style={styles.title1}>¡Hola!</Text>
+          <Text style={styles.title}>Inicia sesión en tu cuenta</Text>
         </View>
-      <View style={{paddingBottom: -15}} >
-        <Text style={styles.title1}>¡Hola!</Text>
-        <Text style={styles.title}>Inicia sesión en tu cuenta</Text>
+        <View style={styles.section}>
+          <TextInput style={styles.input}
+            placeholder="Usuario"
+            value={user}
+            onChangeText={validateUser}
+          />
+          <Text style={styles.validationText}>Max. 10 Caracteres </Text>
+          {errorUser ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
+          <TextInput style={styles.input}
+            placeholder="Contraseña"
+            value={password}
+            secureTextEntry={true}
+            onChangeText={validatePassword}
+          />
+          <Text style={styles.validationText}>Max. 8 Caracteres </Text>
+          <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
+          <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
+          <Text style={styles.validationText}>letras y números </Text>
+
+          {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
+          <TouchableOpacity style={styles.button}
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('Home')} >
+            <Text style={styles.buttonText}>Iniciar sesion</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.buttonInline}
+            title="Registrar Usuario"
+            onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.buttonInlineText}>Registrarse</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-      <View style={styles.section}>
-        <TextInput style={styles.input}
-          placeholder="Usuario"
-          value={user}
-          onChangeText={validateUser}
-        />
-        <Text style={styles.validationText}>Max. 10 Caracteres </Text>
-        {errorUser ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
-        <TextInput style={styles.input}
-          placeholder="Contraseña"
-          value={password}
-          secureTextEntry={true}
-          onChangeText={validatePassword}
-        />
-        <Text style={styles.validationText}>Max. 8 Caracteres </Text>
-        <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
-        <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
-        <Text style={styles.validationText}>letras y números </Text>
-
-        {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
-        <TouchableOpacity style={styles.button}
-          activeOpacity={0.7}
-          onPress={() => navigation.navigate('Home')} >
-          <Text style={styles.buttonText}>Iniciar sesion</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.buttonInline}
-          title="Registrar Usuario"
-          onPress={() => navigation.navigate('Register')}>
-          <Text style={styles.buttonInlineText}>Registrarse</Text>
-        </TouchableOpacity>
-      </View>
-
     </View>
   );
 };

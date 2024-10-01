@@ -5,26 +5,50 @@ const styles = StyleSheet.create({
   cardContainer:{
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    backgroundColor: colortheme.secondary
+    justifyContent: 'center',
+    backgroundColor: colortheme.secondary,
+    paddingHorizontal: 10,
   },
   card: {
-    padding: 10,
+    padding: 5,
     backgroundColor: '#fff',
-    borderRadius: 8,
+    borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    margin: 10,
   },
   title1: {
-    color: colortheme.primary,
+    color: colortheme.secondaryText,
     fontSize: 20,
     padding: 5,
     fontWeight: 'bold'
   },
+  titleDetail: {
+    color: colortheme.secondaryText,
+    fontSize: 20,
+    padding: 5,
+    fontWeight: 'bold',
+    textAlign:'center'
+  },
+  Detailcontainer: {
+    backgroundColor: '#fff', 
+    padding: 20, 
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+  contextDetail: {
+    marginVertical:12,
+  },
   title: {
+    color: colortheme.secondaryText,
     fontSize: 20,
     padding: 5,
   },
@@ -36,6 +60,11 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     marginRight: 10
+  },
+  pictureDetaile: {
+    width: '100%', // Ocupa todo el ancho disponible
+    height: 400,   // Ajusta la altura según lo que necesites
+    resizeMode: 'cover'
   },
   pictureCategories: {
     flex: 1,
@@ -59,8 +88,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: colortheme.background,
-    margin:50
+    backgroundColor: '#ffffff',
+    padding:50
   },
   text: {
     color: colortheme.text,
@@ -101,6 +130,7 @@ const styles = StyleSheet.create({
   section: {
     paddingVertical: 20,
     fontSize: 16,
+    padding: 80
   },
   input: {
     backgroundColor: "#FFFF",
@@ -120,6 +150,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Centra verticalmente
     alignItems: 'center',     // Centra horizontalmente
   },
+  element: {
+    backgroundColor: '#EBEBEB',
+    display: 'block',
+    color: colortheme.text,
+    borderRadius: 30,
+    padding: 10
+}
 });
 
 export default styles;
