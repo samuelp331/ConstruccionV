@@ -167,6 +167,12 @@ const styles = StyleSheet.create({
     color: colortheme.secondaryText,
     fontWeight: 'bold',
   },
+    hr: {
+    borderBottomColor: 'gray', // Color de la línea
+    borderBottomWidth: 1, // Grosor de la línea
+    width: '100%', // O puedes ajustar el ancho como prefieras
+    marginVertical: 10, // Espacio vertical alrededor de la línea
+  },
 });
 
 export default styles;

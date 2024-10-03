@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import styles from '../styles/globalStyles.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const articles = [
   {
@@ -22,10 +23,19 @@ const articles = [
     articleValue: 599000,
     quantity: 1,
   },
+  {
+    id: 3,
+    articlePicture:
+      'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
+    articleName: 'Nintendo Switch Game',
+    articleDescription: 'The Legend of Zelda: Tears of the Kingdom',
+    articleValue: 599000,
+    quantity: 1,
+  },
 ];
 
 const Item = ({ article, onQuantityChange }) => (
-  <View style={styles.card}>
+  <View style={{ backgroundColor: 'white', padding: 20 }}>
     <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'top' }}>
       <View >
         <Image source={{ uri: article.articlePicture }} style={styles.picture} />
@@ -44,7 +54,7 @@ const Item = ({ article, onQuantityChange }) => (
         </View>
       </View>
     </View>
-
+    <View style={styles.hr} />
   </View>
 );
 
@@ -73,26 +83,32 @@ const ShoppingCar = ({ navigation }) => {
   };
 
   return (
-    <View style={{ backgroundColor: '#ffffff38', flex: 1 }}>
-      <View style={{ alignItems: 'center' }} >
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
+      <View style={{ height: '60%' }}>
+        <FlatList
+          data={articles}
+          renderItem={({ item }) => (
+            <Item article={item} onQuantityChange={handleQuantityChange} />
+          )}
+          keyExtractor={article => article.id.toString()}
+        />
+      </View>
+      <View style={{flex: 1, padding: 20 }}>
+        <Text style={styles.title1}>Subtotal</Text>
+        <Text style={styles.title1}>Tasa de servicio</Text>
+        <Text style={styles.title1}>Descuentos</Text>
 
       </View>
-      {/* FlatList para los artículos */}
-      <FlatList
-        data={items}
-        renderItem={({ item }) => (
-          <Item article={item} onQuantityChange={handleQuantityChange} />
-        )}
-        keyExtractor={article => article.id.toString()}
-      />
+      <View style={styles.hr} />
 
-      {/* Botón de Checkout */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Payment')}
       >
-        <Text style={styles.buttonText}>Checkout</Text>
+        <Text style={styles.buttonText}>Pagar</Text>
+
       </TouchableOpacity>
+
     </View>
   );
 };
