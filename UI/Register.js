@@ -119,97 +119,103 @@ const Register = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView >
-        <View>
-          <Text style={styles.title1}>Registrar usuario</Text>
-        </View>
-        <View>
-          <TextInput style={styles.input}
-            placeholder="Usuario"
-            value={user}
-            maxLength={10}
-            onChangeText={validateUser}
-          />
-          <Text style={styles.validationText}>Max. 10 Caracteres </Text>
-          {errorUser ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
+    <View style={{ backgroundColor: '#69A148', flex: 1 }}>
+      <View style={{ height: '5%' }}>
+      </View>
+      <View style={ styles.containerCard }>
 
-          <TextInput style={styles.input}
-            placeholder="Email"
-            value={email}
-            onChangeText={validateEmail}
-          />
-          <Text style={styles.validationText}>Max. 10 Caracteres </Text>
-          {errorEmail ? <Text style={{ color: 'red' }}>{errorEmail}</Text> : null}
+        <ScrollView >
+          <View style={{ alignItems: 'center', marginBottom: 15 }} >
+            <Text style={styles.title1}>Registrar usuario</Text>
+            <Text style={styles.title}>Llena el formulario con tus datos</Text>
+          </View>
+          <View style={styles.section}>
+            <TextInput style={styles.input}
+              placeholder="Usuario"
+              value={user}
+              maxLength={10}
+              onChangeText={validateUser}
+            />
+            <Text style={styles.validationText}>Max. 10 Caracteres </Text>
+            {errorUser ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
 
-          <TextInput
-            placeholder="YYYY-MM-DD"
-            value={birthDate}
-            onChangeText={validateBirthday}
-          />
-          {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
+            <TextInput style={styles.input}
+              placeholder="Email"
+              value={email}
+              onChangeText={validateEmail}
+            />
+            <Text style={styles.validationText}>Max. 10 Caracteres </Text>
+            {errorEmail ? <Text style={{ color: 'red' }}>{errorEmail}</Text> : null}
 
-          <TextInput
-            placeholder="Dirección"
-            maxLength={30}
-            value={address}
-            onChangeText={validateAddress}
-          />
-          {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
+            <TextInput
+              placeholder="YYYY-MM-DD"
+              value={birthDate}
+              onChangeText={validateBirthday}
+            />
+            {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
 
-          <TextInput
-            placeholder="YYYY-MM-DD"
-            value={birthDate}
-            onChangeText={validateBirthday}
-          />
-          {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
+            <TextInput
+              placeholder="Dirección"
+              maxLength={30}
+              value={address}
+              onChangeText={validateAddress}
+            />
+            {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
 
-          <TextInput
-            placeholder="Dirección"
-            maxLength={30}
-            value={address}
-            onChangeText={validateAddress}
-          />
-          {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
+            <TextInput
+              placeholder="YYYY-MM-DD"
+              value={birthDate}
+              onChangeText={validateBirthday}
+            />
+            {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
 
-          <TextInput style={styles.input}
-            placeholder="Contraseña"
-            value={password}
-            maxLength={8}
-            secureTextEntry={true}
-            onChangeText={validatePassword}
-          />
-          <Text style={styles.validationText}>Max. 8 Caracteres </Text>
-          <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
-          <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
-          <Text style={styles.validationText}>letras y números </Text>
+            <TextInput
+              placeholder="Dirección"
+              maxLength={30}
+              value={address}
+              onChangeText={validateAddress}
+            />
+            {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
 
-          {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
+            <TextInput style={styles.input}
+              placeholder="Contraseña"
+              value={password}
+              maxLength={8}
+              secureTextEntry={true}
+              onChangeText={validatePassword}
+            />
+            <Text style={styles.validationText}>Max. 8 Caracteres </Text>
+            <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
+            <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
+            <Text style={styles.validationText}>letras y números </Text>
 
-          <TextInput style={styles.input}
-            placeholder="Confirmar contraseña"
-            value={password}
-            maxLength={8}
-            secureTextEntry={true}
-            onChangeText={validatePassword}
-          />
-          <Text style={styles.validationText}>Max. 8 Caracteres </Text>
-          <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
-          <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
-          <Text style={styles.validationText}>letras y números </Text>
+            {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
 
-          {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
+            <TextInput style={styles.input}
+              placeholder="Confirmar contraseña"
+              value={password}
+              maxLength={8}
+              secureTextEntry={true}
+              onChangeText={validatePassword}
+            />
+            <Text style={styles.validationText}>Max. 8 Caracteres </Text>
+            <Text style={styles.validationText}>debe incluir: 1 Mayúsculas </Text>
+            <Text style={styles.validationText}>debe incluir: 1 caracter especial </Text>
+            <Text style={styles.validationText}>letras y números </Text>
+
+            {errorPasword ? <Text style={{ color: 'red' }}>{errorPasword}</Text> : null}
 
 
 
-          <TouchableOpacity style={styles.button}
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('Login')} >
-            <Text style={styles.buttonText}>Registrar Usuario</Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity style={styles.button}
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('Login')} >
+              <Text style={styles.buttonText}>Registrar Usuario</Text>
+            </TouchableOpacity>
+          </View>
 
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 };

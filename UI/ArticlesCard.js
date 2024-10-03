@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import styles from '../styles/globalStyles.js';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const articles = [
   {
@@ -87,14 +88,14 @@ const Item = ({ article, navigation }) => (
 
 const ArticlesCard = ({ navigation }) => {
   return (
-    <View style={styles.Detailcontainer}>
+    <ScrollView style={{margin:'auto'}}>
       <FlatList
         data={articles}
         renderItem={({ item }) => <Item article={item} navigation={navigation} />}
         keyExtractor={(article) => article.id.toString()}
         numColumns={2} // Mostrar 2 columnas
       />
-    </View>
+    </ScrollView>
   )
 }
 

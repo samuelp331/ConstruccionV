@@ -1,5 +1,5 @@
-import {React, useState} from 'react';
-import {View, Text, Image, TouchableOpacity, TextInput, FlatList} from 'react-native';
+import { React, useState } from 'react';
+import { View, Text, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import styles from '../styles/globalStyles.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -24,28 +24,31 @@ const articles = [
   },
 ];
 
-const Item = ({article, onQuantityChange}) => (
+const Item = ({ article, onQuantityChange }) => (
   <View style={styles.card}>
-    <View style={styles.productInfo}>
-      <Image source={{uri: article.articlePicture}} style={styles.picture} />
-      <View style={{flex: 1}}>
-        <Text style={styles.name}>{article.articleName}</Text>
-        <Text style={styles.price}>£{article.articleValue}</Text>
+    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'top' }}>
+      <View >
+        <Image source={{ uri: article.articlePicture }} style={styles.picture} />
       </View>
-      <View style={styles.quantityContainer}>
-        <TouchableOpacity onPress={() => onQuantityChange(article.id, -1)}>
-          <Icon name="minus-circle" size={24} color="grey" />
-        </TouchableOpacity>
-        <Text style={styles.quantityText}>{article.quantity}</Text>
-        <TouchableOpacity onPress={() => onQuantityChange(article.id, 1)}>
-          <Icon name="plus-circle" size={24} color="grey" />
-        </TouchableOpacity>
+      <View style={{ flex: 1, marginLeft: 10 }}>
+        <Text style={styles.name}>{article.articleName}</Text>
+        <View style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
+          <TouchableOpacity onPress={() => onQuantityChange(article.id, -1)}>
+            <Icon name="minus-circle" size={24} color="#69A148" />
+          </TouchableOpacity>
+          <Text style={styles.quantityText}>{article.quantity}</Text>
+          <TouchableOpacity onPress={() => onQuantityChange(article.id, 1)}>
+            <Icon name="plus-circle" size={24} color="#69A148" />
+          </TouchableOpacity>
+          <Text style={styles.price}>${article.articleValue}</Text>
+        </View>
       </View>
     </View>
+
   </View>
 );
 
-const ShoppingCar = ({navigation}) => {
+const ShoppingCar = ({ navigation }) => {
   const [cant, setCant] = useState('');
   const [errorCant, setErrorCant] = useState('');
   const [items, setItems] = useState(articles);
@@ -70,17 +73,14 @@ const ShoppingCar = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Encabezado */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Mi carrito de compras</Text>
-        <Text style={styles.address}>92 High Street, London</Text>
-      </View>
+    <View style={{ backgroundColor: '#ffffff38', flex: 1 }}>
+      <View style={{ alignItems: 'center' }} >
 
+      </View>
       {/* FlatList para los artículos */}
       <FlatList
         data={items}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <Item article={item} onQuantityChange={handleQuantityChange} />
         )}
         keyExtractor={article => article.id.toString()}

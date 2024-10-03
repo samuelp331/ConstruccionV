@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import colortheme from './colors';
 
 const styles = StyleSheet.create({
-  cardContainer:{
+  cardContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   card: {
-    padding: 5,
+    padding: 15,
     backgroundColor: '#fff',
     borderRadius: 10,
     shadowColor: '#000',
@@ -31,21 +31,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 5,
     fontWeight: 'bold',
-    textAlign:'center'
+    textAlign: 'center'
   },
   Detailcontainer: {
-    backgroundColor: '#fff', 
-    padding: 20, 
-    borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
+    height: '70%',
+    backgroundColor: '#fff',
+    padding: 0,
+    borderRadius: 35,
     justifyContent: 'center',
-    alignItems: 'center',
-},
+  },
   contextDetail: {
-    marginVertical:12,
+    marginVertical: 12,
   },
   title: {
     color: colortheme.secondaryText,
@@ -58,7 +54,7 @@ const styles = StyleSheet.create({
   picture: {
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: 15,
     marginRight: 10
   },
   pictureDetaile: {
@@ -89,7 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    padding:50
+    padding: 50
   },
   text: {
     color: colortheme.text,
@@ -130,10 +126,10 @@ const styles = StyleSheet.create({
   section: {
     paddingVertical: 20,
     fontSize: 16,
-    padding: 80
+    padding: 60
   },
   input: {
-    backgroundColor: "#FFFF",
+    backgroundColor: "#eee",
     height: 40,
     marginVertical: 12,
     paddingLeft: 20,
@@ -142,8 +138,8 @@ const styles = StyleSheet.create({
   },
   validationText: {
     paddingLeft: 10,
-    color: colortheme.primary, 
-    fontSize: 13, 
+    color: colortheme.primary,
+    fontSize: 13,
     textAlign: 'left',
   },
   containerImage: {           // Ocupa todo el espacio disponible
@@ -156,7 +152,21 @@ const styles = StyleSheet.create({
     color: colortheme.text,
     borderRadius: 30,
     padding: 10
-}
+  },
+  containerCard: {
+    borderRadius: 35,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    height: '100%',
+    paddingVertical: 35
+  },
+  price: {
+    marginLeft: 'auto',
+    marginTop:50, // Esto empuja el precio al extremo derecho
+    fontSize: 16,
+    color: colortheme.secondaryText,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

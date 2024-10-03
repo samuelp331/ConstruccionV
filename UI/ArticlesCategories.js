@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, FlatList, ScrollView,StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, ScrollView, StyleSheet } from 'react-native';
 
 const articles = [
     {
@@ -69,15 +69,16 @@ const Item = ({ article }) => (
 
 const ArticlesCategory = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <FlatList
-                data={articles}
-                renderItem={({ item }) => <Item article={item} />}
-                keyExtractor={(article) => article.id.toString()}
-                horizontal 
-                showsHorizontalScrollIndicator={false}
-            />
-        </View>
+
+        <FlatList
+            data={articles}
+            renderItem={({ item }) => <Item article={item} />}
+            keyExtractor={(article) => article.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+        />
+
+
     )
 }
 

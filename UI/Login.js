@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import styles from '../styles/globalStyles.js';
 
 const logo = require('../assets/images/Logo.png');
@@ -30,11 +30,15 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View>
-        <Image source={logo} style={styles.pictureDetaile} />
-
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={{ flex: 1 }}
+  >
+    <View style={{ backgroundColor: '#69A148', flex: 1 }}>
+      <View style={{height:'30%'}}>
+      </View>
       <View style={styles.Detailcontainer}>
-        <View style={{ paddingBottom: -15 }} >
+        <View style={{alignItems: 'center'}} >
           <Text style={styles.title1}>¡Hola!</Text>
           <Text style={styles.title}>Inicia sesión en tu cuenta</Text>
         </View>
@@ -73,6 +77,7 @@ const Login = ({ navigation }) => {
 
       </View>
     </View>
+    </KeyboardAvoidingView>
   );
 };
 export default Login;
