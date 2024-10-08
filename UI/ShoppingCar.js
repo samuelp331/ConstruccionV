@@ -26,7 +26,7 @@ const articles = [
   {
     id: 3,
     articlePicture:
-      'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
+      'https://th.bing.com/th/id/OIP._ZKWuHh3gK7B8LYdzb2dZQAAAA?rs=1&pid=ImgDetMain',
     articleName: 'Nintendo Switch Game',
     articleDescription: 'The Legend of Zelda: Tears of the Kingdom',
     articleValue: 599000,
@@ -93,12 +93,13 @@ const ShoppingCar = ({ navigation }) => {
           keyExtractor={article => article.id.toString()}
         />
       </View>
+
       <View style={{flex: 1, padding: 20 }}>
         <Text style={styles.title1}>Subtotal</Text>
         <Text style={styles.title1}>Tasa de servicio</Text>
         <Text style={styles.title1}>Descuentos</Text>
-
       </View>
+
       <View style={styles.hr} />
 
       <TouchableOpacity

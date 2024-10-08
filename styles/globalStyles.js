@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center'
   },
+  subtitulo: {
+    color: colortheme.secondaryText,
+    fontSize: 15,
+    padding: 5,
+    fontWeight: 'bold',
+  },
   Detailcontainer: {
     height: '70%',
     backgroundColor: '#fff',
