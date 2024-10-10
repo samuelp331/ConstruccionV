@@ -20,6 +20,18 @@ const styles = StyleSheet.create({
     elevation: 3,
     margin: 10,
   },
+  article: {
+    flex: 1, // Ocupa el espacio disponible en la columna
+    padding: 15,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    margin: 5
+  },
   title1: {
     color: colortheme.secondaryText,
     fontSize: 20,

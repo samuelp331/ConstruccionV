@@ -25,8 +25,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Menu.Navigator>
-        <Menu.Screen name="Home" component={Home} />
         <Menu.Screen name="Login" component={Login} />
+        <Menu.Screen name="Home" component={Home} />
         <Menu.Screen name="Register" component={Register} />
         <Menu.Screen name="Payment" component={Payment} />
         <Menu.Screen name="ShoppingCar" component={ShoppingCar} />

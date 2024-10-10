@@ -8,56 +8,64 @@ const articles = [
         articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
         articleName: 'Celular',
         articleDescription: 'Es un celular',
-        articleValue: 1500000
+        articleValue: 1500000,
+        status: "Disponible"
     },
     {
         id: 2,
         articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
         articleName: 'Computador',
         articleDescription: 'Es un computador',
-        articleValue: 3500000
+        articleValue: 3500000,
+        status: "Disponible"
     },
     {
         id: 3,
         articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
         articleName: 'Celular',
         articleDescription: 'Es un celular',
-        articleValue: 1500000
+        articleValue: 1500000,
+        status: "Disponible"
     },
     {
         id: 4,
         articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
         articleName: 'Computador',
         articleDescription: 'Es un computador',
-        articleValue: 3500000
+        articleValue: 3500000,
+        status: "Disponible"
     },
     {
         id: 5,
         articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
         articleName: 'Celular',
         articleDescription: 'Es un celular',
-        articleValue: 1500000
+        articleValue: 1500000,
+        status: "No disponible"
     },
     {
         id: 6,
         articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
         articleName: 'Computador',
         articleDescription: 'Es un computador',
-        articleValue: 3500000
+        articleValue: 3500000,
+        status: "Disponible"
     },
     {
         id: 7,
         articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
         articleName: 'Celular',
         articleDescription: 'Es un celular',
-        articleValue: 1500000
+        articleValue: 1500000,
+        status: "No disponible"
     },
     {
         id: 8,
         articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
         articleName: 'Computador',
         articleDescription: 'Es un computador',
-        articleValue: 3500000
+        articleValue: 3500000,
+        status: "No disponible"
     },
 ];
 
@@ -76,14 +84,22 @@ const Item = ({ article, navigation }) => (
             <View style={styles.row}>
                 <Text style={styles.contextDetail}>{article.articleDescription}</Text>
             </View>
+
             <View style={styles.row}>
-                <Text style={styles.text2}>{article.articleValue}</Text>
+                <Text >{article.articleValue}</Text>
+                <Text >{article.status}</Text>
             </View>
-            <TouchableOpacity style={styles.button}
-                activeOpacity={0.7}
-                onPress={() => navigation.navigate('ShoppingCar')} >
-                <Text style={styles.buttonText}>Agregar carrito</Text>
-            </TouchableOpacity>
+
+
+            {article.status === "Disponible" && (
+                <TouchableOpacity 
+                    style={styles.button}
+                    activeOpacity={0.7}
+                    onPress={() => navigation.navigate('ShoppingCar')}
+                >
+                    <Text style={styles.buttonText}>Agregar carrito</Text>
+                </TouchableOpacity>
+            )}
         </View>
     </TouchableOpacity >
 );
