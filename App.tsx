@@ -15,7 +15,6 @@ import MyFavourites from './UI/MyFavourites.js';
 import Offers from './UI/Offers.js';
 import Profile from './UI/Profile.js';
 import Support from './UI/Support.js';
-import ScreenList from "./UI/ScreenList";
 import Home from "./UI/Home.js";
 
 
@@ -24,20 +23,18 @@ const Menu = createDrawerNavigator();
 
 const App = () => {
   return (
-
-
     <NavigationContainer>
       <Menu.Navigator>
         <Menu.Screen name="Home" component={Home} />
         <Menu.Screen name="Login" component={Login} />
         <Menu.Screen name="Register" component={Register} />
         <Menu.Screen name="Payment" component={Payment} />
-        <Menu.Screen name="Carrito de compras" component={ShoppingCar} />
+        <Menu.Screen name="ShoppingCar" component={ShoppingCar} />
         <Menu.Screen name="ArticlesCard" component={ArticlesCard} />
         <Menu.Screen name="ArticlesDetails" component={ArticlesDetails} />
         <Menu.Screen name="ArticlesCategories" component={ArticlesCategories} />
         <Menu.Screen name="MyShopping" component={MyShopping} />
-        <Menu.Screen name="Mis favoritos" component={MyFavourites} />
+        <Menu.Screen name="MyFavourites" component={MyFavourites} />
         <Menu.Screen name="Offers" component={Offers} />
         <Menu.Screen name="Profile" component={Profile} />
         <Menu.Screen name="Support" component={Support} />

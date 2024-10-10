@@ -1,17 +1,18 @@
-import { React, useState } from 'react';
+import { React, useState} from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import styles from '../styles/globalStyles.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const articles = [
+
   {
     id: 1,
     articlePicture:
       'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
     articleName: 'Celular',
     articleDescription: 'Es un celular',
-    articleValue: 1500000,
+    articleValue: 150.000,
     quantity: 1, // Cantidad por defecto
   },
   {
@@ -20,7 +21,7 @@ const articles = [
       'https://i.blogs.es/1234/legend-of-zelda-tears/1366_2000.jpeg',
     articleName: 'Nintendo Switch Game',
     articleDescription: 'The Legend of Zelda: Tears of the Kingdom',
-    articleValue: 599000,
+    articleValue: 99.999,
     quantity: 1,
   },
   {
@@ -29,10 +30,12 @@ const articles = [
       'https://th.bing.com/th/id/OIP._ZKWuHh3gK7B8LYdzb2dZQAAAA?rs=1&pid=ImgDetMain',
     articleName: 'Nintendo Switch Game',
     articleDescription: 'The Legend of Zelda: Tears of the Kingdom',
-    articleValue: 599000,
+    articleValue: 59.900,
     quantity: 1,
   },
 ];
+
+
 
 const Item = ({ article, onQuantityChange }) => (
   <View style={{ backgroundColor: 'white', padding: 20 }}>
@@ -50,26 +53,19 @@ const Item = ({ article, onQuantityChange }) => (
           <TouchableOpacity onPress={() => onQuantityChange(article.id, 1)}>
             <Icon name="plus-circle" size={24} color="#69A148" />
           </TouchableOpacity>
-          <Text style={styles.price}>${article.articleValue}</Text>
+          <Text style={styles.price}>${article.articleValue.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</Text>
         </View>
       </View>
     </View>
     <View style={styles.hr} />
   </View>
 );
-
 const ShoppingCar = ({ navigation }) => {
-  const [cant, setCant] = useState('');
-  const [errorCant, setErrorCant] = useState('');
   const [items, setItems] = useState(articles);
 
-  const validateCant = text => {
-    setCant(text);
-    if (!text.match(/[0-9]/g)) {
-      setErrorCant('La cantidad no es valida');
-    } else {
-      setErrorCant('');
-    }
+  // Función para calcular el total
+  const calculateTotal = () => {
+    return items.reduce((sum, item) => sum + item.articleValue * item.quantity, 0);
   };
 
   const handleQuantityChange = (id, amount) => {
@@ -86,7 +82,7 @@ const ShoppingCar = ({ navigation }) => {
     <View style={{ backgroundColor: 'white', flex: 1 }}>
       <View style={{ height: '60%' }}>
         <FlatList
-          data={articles}
+          data={items} 
           renderItem={({ item }) => (
             <Item article={item} onQuantityChange={handleQuantityChange} />
           )}
@@ -94,8 +90,8 @@ const ShoppingCar = ({ navigation }) => {
         />
       </View>
 
-      <View style={{flex: 1, padding: 20 }}>
-        <Text style={styles.title1}>Subtotal</Text>
+      <View style={{ flex: 1, padding: 20 }}>
+        <Text style={styles.title1}>Total: ${calculateTotal()}</Text> 
         <Text style={styles.title1}>Tasa de servicio</Text>
         <Text style={styles.title1}>Descuentos</Text>
       </View>
@@ -107,11 +103,10 @@ const ShoppingCar = ({ navigation }) => {
         onPress={() => navigation.navigate('Payment')}
       >
         <Text style={styles.buttonText}>Pagar</Text>
-
       </TouchableOpacity>
-
     </View>
   );
+
 };
 
 export default ShoppingCar;

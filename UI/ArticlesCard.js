@@ -79,7 +79,7 @@ const Item = ({ article, navigation }) => (
       </View>
       <TouchableOpacity style={styles.button}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate('ShoppingCar')}>
+        onPress={() => navigation.navigate('Carrito de compras')}>
         <Text style={styles.buttonText}>Agregar</Text>
       </TouchableOpacity>
     </View>
@@ -88,14 +88,14 @@ const Item = ({ article, navigation }) => (
 
 const ArticlesCard = ({ navigation }) => {
   return (
-    <ScrollView style={{margin:'auto'}}>
+
       <FlatList
         data={articles}
         renderItem={({ item }) => <Item article={item} navigation={navigation} />}
         keyExtractor={(article) => article.id.toString()}
         numColumns={2} // Mostrar 2 columnas
       />
-    </ScrollView>
+
   )
 }
 

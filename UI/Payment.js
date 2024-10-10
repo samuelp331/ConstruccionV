@@ -45,7 +45,7 @@ const Item = ({ article }) => (
 
 
 
-const Payment = () => {
+const Payment = ({ navigation }) => {
 
   const [selectedValue1, setSelectedValue1] = useState(null);
 
@@ -77,7 +77,7 @@ const Payment = () => {
         <View style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
           <Text style={styles.subtitulo}> Metodo de pago </Text>
           <Text>
-            <Icon name="card" style={{ transform: [{ rotateY: '180deg' }] }} size={30} color="#69A148" />
+         
           </Text>
         </View>
         <ModalSelector
