@@ -66,6 +66,7 @@ const Homestyles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
+        marginBottom: 10
     },
     searchContainer: {
         flexDirection: 'row',

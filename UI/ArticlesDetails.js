@@ -3,16 +3,10 @@ import { View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, S
 import styles from '../styles/globalStyles.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ArticlesDetails = () => {
-    const article = [
-        {
-            id: 1,
-            articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
-            articleName: 'Celular',
-            articleDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            articleValue: 1500000,
-        },
-    ];
+const ArticlesDetails = (navigation) => {
+
+    const receivedArticle = navigation.route.params.article;
+    const article = [receivedArticle];
 
     const [InputAnswer, setInputAnswer] = useState('');
     const [InputComment, setInputComment] = useState('');
@@ -113,7 +107,7 @@ const ArticlesDetails = () => {
 
                         <View style={{ marginVertical: 10 }}>
                             <Text style={styles.title}>Comentarios</Text>
-                            <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', gap:5 }}>
+                            <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', gap: 5 }}>
                                 <TextInput
                                     style={[styles.input, { flex: 1 }]}
                                     placeholder="Descripción"
