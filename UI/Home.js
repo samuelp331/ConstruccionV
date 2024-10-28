@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import styles from '../styles/globalStyles.js';
 import ArticlesCategory from './ArticlesCategories.js';
 import ArticlesCard from './ArticlesCard.js';
+import firestore from '@react-native-firebase/firestore';
+
 
 const Home = ({ navigation }) => {
     const [searchText, setSearchText] = useState('');
     const [filteredArticles, setFilteredArticles] = useState([]);
+    const [articles, setArticles] = useState([]);
 
+    useEffect(() => {
+        const fetchArticles = async () => {
+            const articlesCollection = await firestore().collection('articles').get();
+            const articlesList = articlesCollection.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setArticles(articlesList);
+        };
 
+        fetchArticles();
+    }, []);
+    
     const handleNavigateToOffers = () => {
         navigation.navigate('Offers');
     };
-
 
     const handleSearch = (text) => {
         setSearchText(text);
@@ -21,52 +32,6 @@ const Home = ({ navigation }) => {
         );
         setFilteredArticles(filtered);
     };
-
-    const articles = [
-        {
-            id: 1,
-            articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
-            articleName: 'Celular',
-            articleDescription: 'Es un celular',
-            articleValue: 1500000
-        },
-        {
-            id: 2,
-            articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
-            articleName: 'Computador',
-            articleDescription: 'Es un computador',
-            articleValue: 3500000
-        },
-        {
-            id: 3,
-            articlePicture: 'https://www.toptecnouy.com/imgs/productos/productos34_32768.jpg',
-            articleName: 'Auriculares',
-            articleDescription: 'auriculares inalámbricos',
-            articleValue: 300000
-        },
-        {
-            id: 4,
-            articlePicture: 'https://www.bhphotovideo.com/images/images2500x2500/samsung_sm_t800ntsaxar_16gb_galaxy_tab_s_1054121.jpg',
-            articleName: 'Tablet',
-            articleDescription: 'Es una tablet con pantalla HD',
-            articleValue: 2000000
-        },
-        {
-            id: 5,
-            articlePicture: 'https://th.bing.com/th/id/OIP.Oxnl-lHygRCFDBm2zE08IAHaHa?rs=1&pid=ImgDetMain',
-            articleName: 'Altavoz Bluetooth',
-            articleDescription: 'Es un altavoz con alta calidad de sonido',
-            articleValue: 500000
-        },
-        {
-            id: 6,
-            articlePicture: 'https://images-na.ssl-images-amazon.com/images/I/61QXVSF6bLL._AC_SL1500_.jpg',
-            articleName: 'Ratón',
-            articleDescription: 'Es un ratón ergonómico',
-            articleValue: 150000
-        }
-    ];
-    
 
     return (
         <View style={Homestyles.container}>

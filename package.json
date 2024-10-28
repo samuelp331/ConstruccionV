@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^8.2.0",
+    "@react-native-firebase/app": "^21.2.0",
+    "@react-native-firebase/database": "^21.2.0",
+    "@react-native-firebase/firestore": "^21.2.0",
     "@react-native-picker/picker": "^2.7.7",
     "@react-native-vector-icons/fontawesome": "^4.7.0-alpha.25",
     "@react-navigation/drawer": "^6.7.2",
