@@ -71,35 +71,37 @@ const articles = [
 
 const Item = ({ article, navigation }) => (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ArticlesDetails', { article: article[1] })}>
-        <View >
+        <View>
             <View style={styles.iconContainer}>
                 <Text>❤</Text>
             </View>
             <View style={styles.containerImage}>
-                <Image source={{ uri: article.articlePicture }} style={styles.picture} /></View>
-            <View style={styles.row}>
-                <Text style={styles.title1}>{article.articleName}</Text>
+
+
+                <View style={styles.row}>
+                    <Text style={styles.title1}>{article.articleName}</Text>
+                </View>
+
+                <View style={styles.row}>
+                    <Text style={styles.contextDetail}>{article.articleDescription}</Text>
+                </View>
+
+                <View style={styles.row}>
+                    <Text >{article.articleValue}</Text>
+                    <Text >{article.status}</Text>
+                </View>
+
+
+                {article.status === "Disponible" && (
+                    <TouchableOpacity
+                        style={styles.button}
+                        activeOpacity={0.7}
+                        onPress={() => navigation.navigate('ShoppingCar')}
+                    >
+                        <Text style={styles.buttonText}>Agregar carrito</Text>
+                    </TouchableOpacity>
+                )}
             </View>
-
-            <View style={styles.row}>
-                <Text style={styles.contextDetail}>{article.articleDescription}</Text>
-            </View>
-
-            <View style={styles.row}>
-                <Text >{article.articleValue}</Text>
-                <Text >{article.status}</Text>
-            </View>
-
-
-            {article.status === "Disponible" && (
-                <TouchableOpacity 
-                    style={styles.button}
-                    activeOpacity={0.7}
-                    onPress={() => navigation.navigate('ShoppingCar')}
-                >
-                    <Text style={styles.buttonText}>Agregar carrito</Text>
-                </TouchableOpacity>
-            )}
         </View>
     </TouchableOpacity >
 );

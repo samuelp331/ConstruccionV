@@ -1,58 +1,12 @@
 import React, { useReducer, useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet, Platform, Alert, ScrollView } from 'react-native';
 import styles from '../styles/globalStyles.js';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import QuestionsAndComments from './QuestionsAndComments'; // Importa el nuevo componente
 
 const ArticlesDetails = (navigation) => {
 
     const receivedArticle = navigation.route.params.article;
     const article = [receivedArticle];
-
-    const [InputAnswer, setInputAnswer] = useState('');
-    const [InputComment, setInputComment] = useState('');
-    const [InputCalification, setInputCalification] = useState(0);
-
-    const [data, dispatch] = useReducer((state, action) => {
-        switch (action.type) {
-            case 'add_question':
-                return {
-                    ...state,
-                    questions: [...state.questions, { id: state.questions.length + 1, title: action.title }],
-                };
-            case 'add_comment':
-                return {
-                    ...state,
-                    comments: [...state.comments, { id: state.comments.length + 1, title: action.title, calification: action.calification }],
-                };
-            default:
-                return state;
-        }
-    }, { questions: [], comments: [] });
-
-    const submitQuestions = () => {
-        if (InputAnswer.trim() !== '') {
-            dispatch({
-                type: 'add_question',
-                title: InputAnswer,
-            });
-            setInputAnswer('');
-            Alert.alert("¡Éxito!", "Tu pregunta ha sido enviada", [{ text: "OK" }]);
-        }
-    };
-
-    const submitComments = () => {
-        if (InputComment.trim() !== '' && InputCalification > 0) {
-            dispatch({
-                type: 'add_comment',
-                title: InputComment,
-                calification: InputCalification,
-            });
-            setInputComment('');
-            setInputCalification(0);
-        } else {
-            Alert.alert("Error", "Por favor, ingresa un comentario y calificación válida.");
-        }
-    };
 
     return (
         <KeyboardAvoidingView
@@ -80,66 +34,7 @@ const ArticlesDetails = (navigation) => {
                             <Text style={styles.buttonText}>Agregar carrito</Text>
                         </TouchableOpacity>
 
-                        <View style={{ marginVertical: 10 }}>
-                            <Text style={styles.title}>Preguntas</Text>
-                            <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center' }}>
-                                <TextInput
-                                    style={[styles.input, { flex: 1 }]}
-                                    placeholder="Pregunte"
-                                    value={InputAnswer}
-                                    onChangeText={setInputAnswer}
-                                />
-                                <TouchableOpacity style={{ marginLeft: 10 }} onPress={submitQuestions}>
-                                    <Icon name="send" size={24} color="#69A148" />
-                                </TouchableOpacity>
-                            </View>
-                            {data.questions.length > 0 ? (
-                                data.questions.map((question) => (
-                                    <View key={question.id} style={Detailtyles.questionContainer}>
-                                        <Text style={Detailtyles.questionText}>{question.title}</Text>
-                                    </View>
-                                ))
-                            ) : (
-                                <Text style={Detailtyles.noQuestionsText}>Aún no hay preguntas</Text>
-                            )}
-                            <View style={styles.hr} />
-                        </View>
-
-                        <View style={{ marginVertical: 10 }}>
-                            <Text style={styles.title}>Comentarios</Text>
-                            <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', gap: 5 }}>
-                                <TextInput
-                                    style={[styles.input, { flex: 1 }]}
-                                    placeholder="Descripción"
-                                    value={InputComment}
-                                    onChangeText={setInputComment}
-                                />
-                                <TextInput
-                                    style={[styles.input, { flex: 1 }]}
-                                    placeholder="Calificación: 1-5"
-                                    value={InputCalification}
-                                    onChangeText={(value) => setInputCalification(parseInt(value))}
-                                    keyboardType="numeric"
-                                />
-                                <TouchableOpacity style={{ marginLeft: 10 }} onPress={submitComments}>
-                                    <Icon name="plus-circle" size={24} color="#69A148" />
-                                </TouchableOpacity>
-                            </View>
-                            {data.comments.length > 0 ? (
-                                data.comments.map((comment) => (
-                                    <View key={comment.id} style={Detailtyles.cardContainer}>
-                                        <Text style={Detailtyles.commentText}>{comment.title}</Text>
-                                        <View style={Detailtyles.calificationContainer}>
-                                            <Text style={Detailtyles.calificationText}>{comment.calification}</Text>
-                                        </View>
-                                    </View>
-                                ))
-                            ) : (
-                                <Text style={Detailtyles.noCommentsText}>Aún no hay comentarios</Text>
-                            )}
-
-                            <View style={styles.hr} />
-                        </View>
+                        <QuestionsAndComments articleId={receivedArticle.id} />
                     </View>
                 </View>
             </ScrollView>
