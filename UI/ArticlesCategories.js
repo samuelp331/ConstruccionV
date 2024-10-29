@@ -1,107 +1,74 @@
-import React from 'react';
-import { View, Text, Image, FlatList, ScrollView, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 
-const articles = [
-    {
-        id: 1,
-        articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
-        articleName: 'Celular',
-        articleDescription: 'Es un celular',
-        articleValue: 1500000
-    },
-    {
-        id: 2,
-        articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
-        articleName: 'Computador',
-        articleDescription: 'Es un computador',
-        articleValue: 3500000
-    },
-    {
-        id: 3,
-        articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
-        articleName: 'Celular',
-        articleDescription: 'Es un celular',
-        articleValue: 1500000
-    },
-    {
-        id: 4,
-        articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
-        articleName: 'Computador',
-        articleDescription: 'Es un computador',
-        articleValue: 3500000
-    },
-    {
-        id: 5,
-        articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
-        articleName: 'Celular',
-        articleDescription: 'Es un celular',
-        articleValue: 1500000
-    },
-    {
-        id: 6,
-        articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
-        articleName: 'Computador',
-        articleDescription: 'Es un computador',
-        articleValue: 3500000
-    },
-    {
-        id: 7,
-        articlePicture: 'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
-        articleName: 'Celular',
-        articleDescription: 'Es un celular',
-        articleValue: 1500000
-    },
-    {
-        id: 8,
-        articlePicture: 'https://i.blogs.es/ed843e/superpc-ap/450_1000.jpeg',
-        articleName: 'Computador',
-        articleDescription: 'Es un computador',
-        articleValue: 3500000
-    },
+const categories = [
+    { id: '0', name: 'Todos' },
+    { id: '1', name: 'celular' },
+    { id: '2', name: 'computador' },
+    { id: '3', name: 'audio' },
+    { id: '4', name: 'accesorios' },
 ];
 
-const Item = ({ article }) => (
-    <View style={styles.itemContainer}>
-        <Image source={{ uri: article.articlePicture }} style={styles.picture} />
-        <Text style={styles.title1}>{article.articleName}</Text>
-    </View>
-);
+const ArticlesCategory = ({ onSelectCategory }) => {
+    const [selectedCategory, setSelectedCategory] = useState('Todos');
 
-const ArticlesCategory = ({ navigation }) => {
+    const handleCategoryPress = (category) => {
+        setSelectedCategory(category);
+        onSelectCategory(category === 'Todos' ? null : category);
+    };
+
     return (
-
-        <FlatList
-            data={articles}
-            renderItem={({ item }) => <Item article={item} />}
-            keyExtractor={(article) => article.id.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-        />
-
-
-    )
-}
+        <View style={styles.container}>
+            <FlatList
+                data={categories}
+                renderItem={({ item }) => (
+                    <TouchableOpacity
+                        style={[
+                            styles.categoryButton,
+                            selectedCategory === item.name && styles.categoryButtonSelected
+                        ]}
+                        onPress={() => handleCategoryPress(item.name)}
+                    >
+                        <Text
+                            style={[
+                                styles.categoryText,
+                                selectedCategory === item.name && styles.categoryTextSelected
+                            ]}
+                        >
+                            {item.name}
+                        </Text>
+                    </TouchableOpacity>
+                )}
+                keyExtractor={(item) => item.id}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+            />
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        height: 130,
-        marginTop: 20,
+        height: 40,
+        marginVertical: 10,
     },
-    itemContainer: {
-        width: 100, // Ancho del item
-        marginRight: 10, // Espaciado entre items
-        alignItems: 'center', // Centrar elementos dentro del item
+    categoryButton: {
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        marginRight: 10,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 20,
+        alignItems: 'center',
     },
-    picture: {
-        width: 80,
-        height: 80,
-        borderRadius: 10,
-        // Ajusta otros estilos según sea necesario
+    categoryButtonSelected: {
+        backgroundColor: '#007bff',
     },
-    title1: {
-        marginTop: 5,
-        textAlign: 'center',
-        // Ajusta otros estilos según sea necesario
+    categoryText: {
+        fontSize: 14,
+        color: '#333',
+    },
+    categoryTextSelected: {
+        color: '#fff',
     },
 });
 
