@@ -10,7 +10,7 @@ const Profile = () => {
         source={{ uri: 'https://images.squarespace-cdn.com/content/v1/5d77a7f8ad30356d21445262/1695000300830-5TKAFHC2EBYTTM2QUWUP/fotos-de-perfil-blanco-y-negro.jpg' }}
           style={styles.profileImage}
         />
-        <Text style={styles.name}>Maria Camila Mejia</Text>
+        <Text style={styles.name}>Jhon Doe</Text>
         <Text style={styles.title}>15 de enero de 2003</Text>
       </View>
 

@@ -57,6 +57,7 @@ const QuestionsAndComments = ({ articleId }) => {
             const commentsData = commentsSnapshot.docs.map(doc => ({
                 id: doc.id,
                 title: doc.data().title,
+                calification: doc.data().calification,
             }));
 
             console.log("Comentarios cargados:", commentsData); // Agrega esto para verificar

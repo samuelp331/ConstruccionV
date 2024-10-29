@@ -4,46 +4,6 @@ import styles from '../styles/globalStyles.js';
 import ModalSelector from 'react-native-modal-selector';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const articles = [
-  {
-    id: 1,
-    articlePicture:
-      'https://i.blogs.es/81640c/xiaomi-redmi-note-13-impresiones/1366_2000.jpeg',
-    articleName: 'Samsung A51',
-    articleCant: 2,
-    articleValue: 1500000,
-    totalValue: 3000000,
-  },
-  {
-    id: 2,
-    articlePicture:
-      'https://th.bing.com/th/id/OIP._ZKWuHh3gK7B8LYdzb2dZQAAAA?rs=1&pid=ImgDetMain',
-    articleName: 'Nintendo Switch Game',
-    articleCant: 1,
-    articleValue: 1500000,
-    totalValue: 3000000,
-  },
-];
-
-const Item = ({ article }) => (
-
-  <View style={{ backgroundColor: 'white', padding: 10 }}>
-    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'top' }}>
-      <View >
-        <Image source={{ uri: article.articlePicture }} style={styles.picture} />
-      </View>
-      <View style={{ flex: 1, marginLeft: 10 }}>
-        <Text style={styles.name}>{article.articleName}</Text>
-        <Text> Cantidad {article.articleCant}</Text>
-        <Text> Valor: ${article.articleValue}</Text>
-        <Text> Valor total: ${article.totalValue}</Text>
-      </View>
-    </View>
-    <View style={styles.hr} />
-  </View>
-);
-
-
 
 const Payment = ({ navigation }) => {
 
@@ -57,12 +17,6 @@ const Payment = ({ navigation }) => {
 
   return (
     <View style={{ backgroundColor: 'white' }}>
-      <FlatList
-        data={articles}
-        renderItem={({ item }) => <Item article={item} />}
-        keyExtractor={article => article.id.toString()}
-      />
-
       <View style={{ padding: 15 }}>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
           <Text style={styles.subtitulo}> Metodo de envío </Text>

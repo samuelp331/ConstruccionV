@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
     margin: 10,
+    
   },
   article: {
     flex: 1, // Ocupa el espacio disponible en la columna

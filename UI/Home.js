@@ -54,9 +54,8 @@ const Home = ({ navigation }) => {
                 <Text style={styles.title}>Categorias</Text>
                 <ArticlesCategory />
             </View>
-            <View style={styles.card}>
-
-                <ArticlesCard articles={searchText ? filteredArticles : articles} navigation={navigation} />
+            <View>
+               <ArticlesCard articles={searchText ? filteredArticles : articles} navigation={navigation} />
             </View>
         </View>
     );

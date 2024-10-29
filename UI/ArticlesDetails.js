@@ -1,12 +1,43 @@
 import React, { useReducer, useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet, Platform, Alert, ScrollView } from 'react-native';
 import styles from '../styles/globalStyles.js';
-import QuestionsAndComments from './QuestionsAndComments'; // Importa el nuevo componente
+import QuestionsAndComments from './QuestionsAndComments';
+import firestore from '@react-native-firebase/firestore';
 
 const ArticlesDetails = (navigation) => {
 
     const receivedArticle = navigation.route.params.article;
     const article = [receivedArticle];
+
+    const addToFavorites = async (article) => {
+        try {
+            const existingArticleQuery = await firestore()
+                .collection('favorites')
+                .where('articleName', '==', article.articleName) 
+                .get();
+
+            if (!existingArticleQuery.empty) {
+                Alert.alert("Información", "Este artículo ya está en tus favoritos.");
+                return; 
+            }
+
+            await firestore()
+                .collection('favorites')
+                .add({
+                    articleName: article.articleName,
+                    articleDescription: article.articleDescription,
+                    articleValue: article.articleValue,
+                    articlePicture: article.articlePicture,
+                    category: article.category,
+                    status: article.status
+                });
+
+            Alert.alert("¡Éxito!", "Artículo agregado a favoritos", [{ text: "OK" }]);
+        } catch (error) {
+            console.error("Error al agregar el artículo a favoritos:", error);
+            Alert.alert("Error", "No se pudo agregar el artículo. Inténtalo nuevamente.");
+        }
+    };
 
     return (
         <KeyboardAvoidingView
@@ -15,7 +46,16 @@ const ArticlesDetails = (navigation) => {
         >
             <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
                 <View style={{ paddingBottom: 100 }}>
-                    <Image source={{ uri: article[0].articlePicture }} style={styles.pictureDetaile} />
+
+                    <TouchableOpacity onPress={() => addToFavorites(article[0])}>
+                        <View style={Detailtyles.imageContainer}>
+                            <Image source={{ uri: article[0].articlePicture }} style={styles.pictureDetaile} />
+
+                            <View style={Detailtyles.iconContainer}>
+                                <Text style={styles.favoriteText}>❤ Añadir a favoritos</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
 
                     <View style={Detailtyles.container}>
                         <View style={Detailtyles.row}>
@@ -43,6 +83,17 @@ const ArticlesDetails = (navigation) => {
 };
 
 const Detailtyles = StyleSheet.create({
+    imageContainer: {
+        position: 'relative', // Permite posicionar elementos dentro
+    },
+    iconContainer: {
+        position: 'absolute', // Posiciona el texto encima de la imagen
+        top: 10, // Ajusta la posición vertical
+        left: 10, // Ajusta la posición horizontal
+        backgroundColor: 'rgba(255, 255, 255, 0.7)', // Fondo semi-transparente
+        padding: 5,
+        borderRadius: 5,
+    },
     container: {
         backgroundColor: '#fff',
         padding: 20,
@@ -73,6 +124,10 @@ const Detailtyles = StyleSheet.create({
         color: '#999',
         textAlign: 'center',
         marginTop: 20,
+    },
+    favoriteText: {
+        fontSize: 16,
+        color: '#ff4081', // Color atractivo para el texto
     },
     cardContainer: {
         marginTop: 10,
