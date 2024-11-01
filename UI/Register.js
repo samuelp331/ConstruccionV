@@ -118,6 +118,37 @@ const Register = ({ navigation }) => {
     ],
   };
 
+  const addToUsers = async (user) => {
+    try {
+        const existingUserQuery = await firestore()
+            .collection('users')
+            .where('email', '==', user.email) 
+            .get();
+
+        if (!existingUserQuery.empty) {
+            Alert.alert("Información", "Este usuario ya está registrado.");
+            return; 
+        }
+
+        await firestore()
+            .collection('users')
+            .add({
+              password: user.password,
+              user: user.user,
+              email: user.email,
+              birthDate: user.birthDate,
+              address: user.address,
+            });
+
+        Alert.alert("¡Éxito!", "Usuario agregado ", [{ text: "OK" }]);
+
+        //console.log(user);
+    } catch (error) {
+        console.error("Error al agregar el usuario:", error);
+        Alert.alert("Error", "No se pudo agregar el usuario. Inténtalo nuevamente.");
+    }
+};
+
   return (
     <View style={{ backgroundColor: '#69A148', flex: 1 }}>
       <View style={{ height: '5%' }}>
@@ -146,21 +177,6 @@ const Register = ({ navigation }) => {
             />
             <Text style={styles.validationText}>Max. 10 Caracteres </Text>
             {errorEmail ? <Text style={{ color: 'red' }}>{errorEmail}</Text> : null}
-
-            <TextInput
-              placeholder="YYYY-MM-DD"
-              value={birthDate}
-              onChangeText={validateBirthday}
-            />
-            {errorBirthDate ? <Text style={{ color: 'red' }}>{errorUser}</Text> : null}
-
-            <TextInput
-              placeholder="Dirección"
-              maxLength={30}
-              value={address}
-              onChangeText={validateAddress}
-            />
-            {errorAddress ? <Text style={{ color: 'red' }}>{errorAddress}</Text> : null}
 
             <TextInput
               placeholder="YYYY-MM-DD"
@@ -209,7 +225,8 @@ const Register = ({ navigation }) => {
 
             <TouchableOpacity style={styles.button}
               activeOpacity={0.7}
-              onPress={() => navigation.navigate('Login')} >
+              onPress={() =>  addToUsers({password, user,email,birthDate,address}) } >
+              {/* onPress={() =>  navigation.navigate('Login')} > */}
               <Text style={styles.buttonText}>Registrar Usuario</Text>
             </TouchableOpacity>
           </View>
